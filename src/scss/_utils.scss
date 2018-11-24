@@ -1,0 +1,116 @@
+// Flex
+.flex {
+    display: flex;
+
+    &-down {
+        @extend .flex;
+        flex-direction: column;
+    }
+}
+.items {
+    &-around { align-items: space-around !important; }
+    &-between { align-items: space-between !important; }
+    &-center { align-items: center !important; }
+    &-end { align-items: flex-end !important; }
+    &-start { align-items: flex-start !important; }
+    &-stretch { align-items: stretch !important; }
+}
+.justify {
+    &-around { justify-content: space-around !important; }
+    &-between { justify-content: space-between !important; }
+    &-center { justify-content: center !important; }
+    &-end { justify-content: flex-end !important; }
+    &-start { justify-content: flex-start !important; }
+}
+
+// Positioning
+.absolute { position: absolute; }
+.relative { position: relative; }
+
+// Helper classes
+$rem-list: (
+    '0': 0,
+    '0p5': 0.5rem,
+    '1': 1rem,
+    '1p5': 1.5rem,
+    '2': 2rem,
+    '2p5': 2.5rem,
+    '3': 3rem,
+    '3p5': 3.5rem,
+    '4': 4rem,
+    '4p5': 4.5rem,
+    '5': 5rem,
+);
+
+@each $name, $rem in $rem-list {
+    // Margins
+    .mt-#{$name} { margin-top: $rem !important; }
+    .mr-#{$name} { margin-right: $rem !important; }
+    .mb-#{$name} { margin-bottom: $rem !important; }
+    .ml-#{$name} { margin-left: $rem !important; }
+    .mx-#{$name} {
+        @extend .ml-#{$name};
+        @extend .mr-#{$name};
+    }
+    .my-#{$name} {
+        @extend .mt-#{$name};
+        @extend .mb-#{$name};
+    }
+    .m-#{$name} { margin: $rem !important; }
+
+    // Paddings
+    .pt-#{$name} { padding-top: $rem !important; }
+    .pr-#{$name} { padding-right: $rem !important; }
+    .pb-#{$name} { padding-bottom: $rem !important; }
+    .pl-#{$name} { padding-left: $rem !important; }
+    .px-#{$name} {
+        @extend .pl-#{$name};
+        @extend .pr-#{$name};
+    }
+    .py-#{$name} {
+        @extend .pt-#{$name};
+        @extend .pb-#{$name};
+    }
+    .p-#{$name} { padding: $rem !important; }
+}
+
+@for $var from 10 to 100 {
+    .hw-#{$var} {
+        height: #{$var}px;
+        width: #{$var}px;
+
+        * {
+            height: auto;
+            width: #{$var}px;
+            max-height: #{$var}px;
+            max-width: #{$var}px;
+        }
+    }
+    .w-#{$var} {
+        width: #{$var}px !important;
+        max-width: #{$var}px !important;
+        min-width: #{$var}px !important;
+    }
+    .h-#{$var} {
+        height: #{$var}px !important;
+        max-height: #{$var}px !important;
+        min-height: #{$var}px !important;
+    }
+}
+
+// Others
+.box-shadow { box-shadow: 8px 8px 12px 0px rgba(0, 0, 0, .1); }
+.full-screen {
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+}
+.full-width { width: 100%; }
+.muted {
+    $opacity: 0.75;
+    opacity: $opacity;
+    pointer-events: none;
+    * { opacity: $opacity; }
+}
+.pointer { cursor: pointer; }
+.scrollable { overflow-y: scroll; }

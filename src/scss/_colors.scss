@@ -1,0 +1,29 @@
+$colors: (
+    'black': #353636,
+    'blue': #b5e3ee,
+    'gray': #f1f1f1,
+    'gray-light': #f5f5f5,
+    'gray-dark': #e1e1e1,
+    'gray-darker': #999999,
+    'green': #b5eec0,
+    'pink': #eeb5e3,
+    'purple': #ada3eb,
+    'white': #ffffff,
+);
+
+@function color($name) {
+    @return map-get($colors, $name);
+}
+
+@each $name, $color in $colors {
+   .color--#{$name} { color: $color !important; }
+   .background--#{$name} { background-color: $color !important; }
+   .fill--#{$name} {
+        fill: $color !important;
+        * { fill: $color !important; }
+    }
+    .color-fill--#{$name} {
+        @extend .color--#{$name};
+        @extend .fill--#{$name};
+    }
+}

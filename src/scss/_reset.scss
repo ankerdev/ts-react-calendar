@@ -1,0 +1,17 @@
+body, body * {
+    box-sizing: border-box;
+    border: none;
+    color: color('black');
+    font-family: 'Lexia';
+    font-size: 100%;
+    line-height: 100%;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    vertical-align: baseline
+}
+
+button, select {
+    appearance: none;
+    cursor: pointer;
+}

@@ -1,0 +1,133 @@
+$tile-length: 140px;
+
+.table-border {
+    border: 1px solid color('gray-dark');
+    border-left: none;
+    border-top: none;
+
+    &:first-of-type { border-left: none; }
+    &:last-of-type { border-right: none; }
+}
+
+.flex-center {
+    @extend .flex;
+    @extend .items-center;
+    @extend .justify-center;
+}
+
+.calendar-wrapper {
+    .month-wrapper {
+        .action-wrapper {
+            @extend .box-shadow;
+            border-radius: 6px;
+            overflow: hidden;
+
+            button {
+                @extend .color-fill--black;
+                @extend .flex-center;
+                background-color: color('white');
+                font-size: 13px;
+                height: 32px;
+                padding: 0 10px;
+
+                &:first-of-type, &:last-of-type { padding: 0 3px; }
+                i { @extend .hw-26; }
+            }
+        }
+    }
+    .calendar {
+        @extend .box-shadow;
+        border-radius: 6px;
+        overflow: hidden;
+
+        * { font-size: 12px; }
+        .headers p {
+            @extend .flex-center;
+            @extend .table-border;
+            background-color: color('white');
+            color: color('gray-darker');
+            font-size: 11px;
+            padding: 12px 0;
+            width: $tile-length;
+        }
+        .week {
+            .date-tile {
+                @extend .table-border;
+                background-color: color('white');
+                height: $tile-length * 0.71;
+                width: $tile-length;
+                padding: 10px;
+
+                &--selectable {
+                    @extend .date-tile;
+                    @extend .pointer;
+
+                    &:hover {
+                        background-color: darken(color('white'), 1%);
+                        & > p { text-shadow: 0 0 4px rgba(0, 0, 0, .2); }
+                    }
+                }
+                &--unselectable {
+                    @extend .date-tile;
+                    background-color: color('gray-light');
+
+                    p {
+                        color: color('gray-darker');
+                        opacity: 0.6;
+                    }
+                }
+                .today {
+                    color: color('white');
+                    position: relative;
+                    z-index: 5;
+
+                    &::after {
+                        background-color: color('purple');
+                        border-radius: 50%;
+                        content: "";
+                        height: 21px;
+                        width: 21px;
+
+                        // Positioning
+                        position: absolute;
+                        left: -4px;
+                        top: -5px;
+                        z-index: -1;
+                    }
+                }
+                // @TODO Extract to _reminder.scss?
+                .reminder-wrapper {
+                    @extend .scrollable;
+
+                    .reminder {
+                        background-color: color('gray-light');
+                        border-radius: 2px;
+                        height: 42px;
+                        overflow: hidden;
+                        z-index: 10;
+
+                        &:hover { background-color: darken(color('gray-light'), 1%); }
+                        &:not(:first-of-type) { margin-top: 0.5rem; }
+                        .pillar {
+                            height: 100%;
+                            width: 5px;
+                        }
+                        .inner-wrapper {
+                            overflow: hidden;
+                            padding: 8px 6px;
+                            width: 100%;
+
+                            * { width: 100%; }
+                            b {
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+                            p { margin-top: 2px; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
