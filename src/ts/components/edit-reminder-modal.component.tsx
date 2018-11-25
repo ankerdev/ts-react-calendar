@@ -11,6 +11,7 @@ interface IState {
 
 @observer
 export class EditReminderModal extends React.Component {
+  maxChars: number = 30;
   state: IState = {
     showErrorMessage: false,
   };
@@ -30,23 +31,9 @@ export class EditReminderModal extends React.Component {
    * @return {var}
    */
 
-  /**
-   * Determine if form is valid.
-   *
-   * @return {boolean}
-   */
   get formIsValid(): boolean {
     const { event } = store.reminder;
     return event.length > 0;
-  }
-
-  /**
-   * Return reminder with index signature.
-   *
-   * @return {any}
-   */
-  get indexedReminder(): any {
-    return store.reminder as any;
   }
 
   get buttonTextPrefix(): string {
@@ -97,7 +84,7 @@ export class EditReminderModal extends React.Component {
               placeholder="e.g. Lunch with John..."
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 const value: string = e.target.value;
-                if (value.length <= 30) {
+                if (value.length <= this.maxChars) {
                   store.reminder.event = value;
                 }
               }}

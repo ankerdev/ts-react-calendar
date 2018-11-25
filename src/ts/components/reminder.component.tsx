@@ -11,7 +11,6 @@ export const Reminder = (reminder: IReminder) => (
       const date: string = formatDate(reminder.datetime);
       store.reminder = {
         ...reminder,
-        // editObject specific properties
         action: ReminderAction.EDIT,
         date,
         prevIndex: date,
