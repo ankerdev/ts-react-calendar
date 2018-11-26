@@ -8,7 +8,7 @@ import { Calendar } from '../views';
 
 enzyme.configure({ adapter: new Adapter() });
 
-// Calendar view components
+// Calendar view component
 describe('<Calendar />', () => {
   const calendar = enzyme.mount(<Calendar />);
 

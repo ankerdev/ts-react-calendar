@@ -11,3 +11,4 @@ You can add, edit and delete reminders for the given dates.
 ## Usage
 - Click a date tile to add a reminder
 - Click a reminder to edit or delete it
+- Change the current month by clicking the modifiers in the top-right corner
