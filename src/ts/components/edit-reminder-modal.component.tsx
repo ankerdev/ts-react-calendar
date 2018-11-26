@@ -18,7 +18,7 @@ export class EditReminderModal extends React.Component {
 
   onSubmit() {
     if (this.formIsValid) {
-      store.createReminder();
+      store.createOrUpdateReminder();
       store.showEditReminderModal = false;
     } else {
       this.setState({ showErrorMessage: true });
@@ -119,7 +119,7 @@ export class EditReminderModal extends React.Component {
             <button
               className="button--purple mt-1"
               onClick={() => {
-                store.deleteReminder(reminder);
+                store.deleteReminder();
                 store.showEditReminderModal = false;
               }}
             >

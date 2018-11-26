@@ -39,13 +39,13 @@ class CalendarStore {
   }
 
   @action
-  createReminder(): void {
+  createOrUpdateReminder(): void {
     const { reminder } = this;
     reminder.datetime = createDateFromStamps(reminder.date, reminder.time);
     const index: string = formatDate(reminder.datetime);
 
     // If editing existing reminder, remove the previous version
-    reminder.prevIndex && this.deleteReminder(reminder);
+    reminder.prevIndex && this.deleteReminder();
 
     if (index in this.remindersForDate) {
       // If other reminders exist for the given index, insert reminder in correct, timely order
@@ -62,7 +62,8 @@ class CalendarStore {
   }
 
   @action
-  deleteReminder(reminder: IReminderEditObject): void {
+  deleteReminder(): void {
+    const { reminder } = this;
     const { prevIndex } = reminder;
     if (prevIndex) {
       const reminders: IReminder[] = this.remindersForDate[prevIndex];
